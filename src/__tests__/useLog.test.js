@@ -5,27 +5,29 @@ import { cleanup, render } from '@testing-library/react'
 import useLog from '../useLog'
 import useLogReducer from '..'
 
-const App = ({ children, ...rest }) => children(useLog(rest))
-function setup(props) {
-  const returnVal = {}
+describe('useLog', () => {
+  afterEach(cleanup)
 
-  render(
-    <App {...props}>
-      {val => {
-        Object.assign(returnVal, val)
-        return null
-      }}
-    </App>
-  )
+  const App = ({ children, ...rest }) => children(useLog(rest))
+  function setup(props) {
+    const returnVal = {}
 
-  return returnVal
-}
+    render(
+      <App {...props}>
+        {val => {
+          Object.assign(returnVal, val)
+          return null
+        }}
+      </App>
+    )
 
-test('should return with initial value', () => {
-  const state = { count: 0 }
-  const { prevState } = setup({ state })
+    return returnVal
+  }
 
-  expect(prevState).toBe(undefined)
+  test('should return with initial value', () => {
+    const state = { count: 0 }
+    const { prevState } = setup({ state })
+
+    expect(prevState).toBe(undefined)
+  })
 })
-
-afterEach(cleanup)
