@@ -1,9 +1,11 @@
-import { useReducer, useRef } from 'react'
+import { useReducer } from 'react'
 
-import { usePrevious } from './usePrevious'
+import { useCreateLog } from './useCreateLog'
 
 function useLogReducer(...args) {
   const reducerData = useReducer(...args)
+
+  useCreateLog(...reducerData)
 
   return reducerData
 }
