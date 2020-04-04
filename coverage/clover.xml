@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1585874290805" clover="3.2.0">
-  <project timestamp="1585874290805" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1585982623491" clover="3.2.0">
+  <project timestamp="1585982623491" name="All files">
+    <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="3" coveredelements="3" complexity="0" loc="2" ncloc="2" packages="1" files="1" classes="1"/>
+    <file name="index.js" path="/home/qlue/Desktop/__LEARNING__/reducer-logger/src/index.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+    </file>
   </project>
 </coverage>

@@ -1,1 +1,2 @@
-{}
+{"/home/qlue/Desktop/__LEARNING__/reducer-logger/src/index.js": {"path":"/home/qlue/Desktop/__LEARNING__/reducer-logger/src/index.js","statementMap":{"0":{"start":{"line":6,"column":22},"end":{"line":6,"column":41}},"1":{"start":{"line":8,"column":2},"end":{"line":8,"column":20}}},"fnMap":{"0":{"name":"useLogReducer","decl":{"start":{"line":5,"column":9},"end":{"line":5,"column":22}},"loc":{"start":{"line":5,"column":32},"end":{"line":9,"column":1}},"line":5}},"branchMap":{},"s":{"0":1,"1":1},"f":{"0":1},"b":{},"_coverageSchema":"1a1c01bbd47fc00a2c39e90264f33305004495a9","hash":"e176206638e0cc5a84b4d80779cf132d1e534980"}
+}

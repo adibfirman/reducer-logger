@@ -1,11 +1,11 @@
-import { useReducer } from 'react'
-import { default as useLog } from './useLog'
+import { useReducer, useRef } from 'react'
+
+import { usePrevious } from './usePrevious'
 
 function useLogReducer(...args) {
-  const [state, dispatch] = useReducer(...args)
-  useLog({ state, dispatch })
+  const reducerData = useReducer(...args)
 
-  return [state, dispatch]
+  return reducerData
 }
 
 export default useLogReducer
