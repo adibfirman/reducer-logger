@@ -25,7 +25,7 @@
     "start": "microbundle watch --jsx React.createElement",
     "build": "microbundle --jsx React.createElement",
     "format": "prettier {src/**}/*.{md,js,jsx,tsx} --write",
-    "release": "git tag $npm_package_version && git push --tags && npm publish"
+    "release": "git tag $npm_package_version && git push --tags && npm login && npm publish"
   },
   "peerDependencies": {
     "react": ">= 16.8",
