@@ -2,7 +2,9 @@
 
 Hooks for see activity your awesome `useReducer` React API
 
-![Reducer Logger](https://github.com/adibfirman/reducer-logger/raw/master/media/result.png)
+<p align="center">
+  <img src='https://github.com/adibfirman/reducer-logger/raw/master/media/result.png' />
+</p>
 
 ## Installation
 
