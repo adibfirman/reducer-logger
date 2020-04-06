@@ -1,6 +1,6 @@
 {
   "name": "reducer-logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hook for debug your awesome useReducer React API",
   "repository": "adibfirman/reducer-logger",
   "author": "adibfirman <dib.firman@gmail.com>",
@@ -24,7 +24,8 @@
     "test": "jest",
     "start": "microbundle watch --jsx React.createElement",
     "build": "microbundle --jsx React.createElement",
-    "format": "prettier {src/**}/*.{md,js,jsx,tsx} --write"
+    "format": "prettier {src/**}/*.{md,js,jsx,tsx} --write",
+    "release": "git tag $npm_package_version && git push --tags && npm publish"
   },
   "peerDependencies": {
     "react": ">= 16.8",
