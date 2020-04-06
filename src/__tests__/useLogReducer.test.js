@@ -57,10 +57,10 @@ describe('useLogReducer', () => {
 
     expect(getByText(/num: 1/i)).toBeInTheDocument()
     expect(consoleOpt).toEqual([
-      ['--- useReducer Logger ---'],
-      ['prev state', { count: 0 }],
-      ['action', { type: 'increment' }],
-      ['next state', { count: 1 }],
+      ['%c--- useReducer Logger ---', 'font-weight: bold;'],
+      ['%cprev state', 'color: #9E9E9E;', { count: 0 }],
+      ['%caction', 'color: #00AFF8;', { type: 'increment' }],
+      ['%cnext state', 'color: #4AB14D;', { count: 1 }],
       [],
     ])
   })
