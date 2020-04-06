@@ -2,6 +2,8 @@
 
 Hooks for see activity your awesome `useReducer` React API
 
+![Reducer Logger](https://github.com/adibfirman/reducer-logger/raw/master/media/result.png)
+
 ## Installation
 
 ```bash
@@ -22,6 +24,8 @@ function reducer(state, action) {
   switch (action.type) {
     case 'increment':
       return { ...state, count: state.count + 1 }
+    case 'decrement':
+      return { ...state, count: state.count - 1 }
     default:
       throw new Error('Unknown action type')
   }
