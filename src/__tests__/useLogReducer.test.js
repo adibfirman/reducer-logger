@@ -7,16 +7,8 @@ import useLogReducer from '..'
 afterEach(cleanup)
 
 describe('useLogReducer', () => {
-  // mocking console
   const originalLog = console.log
-  const consoleOpt = []
-  const mockedConsole = (...output) => consoleOpt.push([...output])
-  afterEach(() => (console.log = originalLog))
-  beforeEach(() => {
-    console.groupCollapsed = mockedConsole
-    console.groupEnd = mockedConsole
-    console.log = mockedConsole
-  })
+  afterAll(() => (console.log = originalLog))
 
   const initialState = { count: 0 }
   function reducer(state, action) {
@@ -42,27 +34,76 @@ describe('useLogReducer', () => {
     )
   }
 
-  test('should return initial value and logger not trigger in first render', () => {
-    render(<Example />)
-    expect(consoleOpt).toEqual([])
+  describe('Check log output in first time render', () => {
+    const consoleOpt = []
+    const mockedConsole = (...output) => consoleOpt.push([...output])
+    beforeEach(() => {
+      console.groupCollapsed = mockedConsole
+      console.groupEnd = mockedConsole
+      console.log = mockedConsole
+    })
+
+    test('should not create a log', () => {
+      render(<Example />)
+      expect(consoleOpt).toEqual([])
+    })
   })
 
-  test('test increment button and print log reducer', () => {
-    const { getByText } = render(<Example />)
-    const incrementBtn = getByText('+')
+  describe('check log output when trigger increment button', () => {
+    const consoleOpt = []
+    const mockedConsole = (...output) => consoleOpt.push([...output])
+    beforeEach(() => {
+      console.groupCollapsed = mockedConsole
+      console.groupEnd = mockedConsole
+      console.log = mockedConsole
+    })
 
-    expect(getByText(/num: 0/i)).toBeInTheDocument()
-    expect(consoleOpt).toEqual([])
+    test('should print prev, action and next log', () => {
+      const { getByText } = render(<Example />)
+      const incrementBtn = getByText('+')
 
-    fireEvent.click(incrementBtn)
+      expect(getByText(/num: 0/i)).toBeInTheDocument()
+      expect(consoleOpt).toEqual([])
 
-    expect(getByText(/num: 1/i)).toBeInTheDocument()
-    expect(consoleOpt).toEqual([
-      ['%c--- useReducer Logger ---', 'font-weight: bold;'],
-      ['%cprev state', 'color: #9E9E9E;', { count: 0 }],
-      ['%caction', 'color: #00AFF8;', { type: 'increment' }],
-      ['%cnext state', 'color: #4AB14D;', { count: 1 }],
-      [],
-    ])
+      fireEvent.click(incrementBtn)
+
+      expect(getByText(/num: 1/i)).toBeInTheDocument()
+      expect(consoleOpt).toEqual([
+        ['%c--- useReducer Logger ---', 'font-weight: bold;'],
+        ['%cprev state', 'color: #9E9E9E;', { count: 0 }],
+        ['%caction', 'color: #00AFF8;', { type: 'increment' }],
+        ['%cnext state', 'color: #4AB14D;', { count: 1 }],
+        [],
+      ])
+    })
+  })
+
+  describe('check log output when trigger decrement button', () => {
+    const consoleOpt = []
+    const mockedConsole = (...output) => consoleOpt.push([...output])
+    beforeEach(() => {
+      console.groupCollapsed = mockedConsole
+      console.groupEnd = mockedConsole
+      console.log = mockedConsole
+    })
+
+    test('test decrement button and print the log', () => {
+      const { getByText } = render(<Example />)
+      const decrementBtn = getByText('-')
+
+      expect(getByText(/num: 0/i)).toBeInTheDocument()
+      expect(consoleOpt).toEqual([])
+
+      fireEvent.click(decrementBtn)
+
+      expect(getByText(/num: -1/i)).toBeInTheDocument()
+      expect(consoleOpt).toEqual([
+        ['%c--- useReducer Logger ---', 'font-weight: bold;'],
+        ['%cprev state', 'color: #9E9E9E;', { count: 0 }],
+        ['%caction', 'color: #00AFF8;', { type: 'decrement' }],
+        ['%cnext state', 'color: #4AB14D;', { count: -1 }],
+        [],
+      ])
+    })
   })
 })
