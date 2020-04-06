@@ -21,6 +21,8 @@ describe('useLogReducer', () => {
   const initialState = { count: 0 }
   function reducer(state, action) {
     switch (action.type) {
+      case 'decrement':
+        return { ...state, count: state.count - 1 }
       case 'increment':
         return { ...state, count: state.count + 1 }
       default:
@@ -45,10 +47,9 @@ describe('useLogReducer', () => {
     expect(consoleOpt).toEqual([])
   })
 
-  test('print to browser log are, prev state, action and next state', () => {
+  test('test increment button and print log reducer', () => {
     const { getByText } = render(<Example />)
     const incrementBtn = getByText('+')
-    const decrementBtn = getByText('-')
 
     expect(getByText(/num: 0/i)).toBeInTheDocument()
     expect(consoleOpt).toEqual([])

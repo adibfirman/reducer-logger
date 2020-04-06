@@ -2,12 +2,21 @@ import { useReducer } from 'react'
 
 import createLog from './createLog'
 
+let logHasBeenCalled = false
+
 function useLogReducer(...params) {
   const copyParams = [...params]
   const reducer = copyParams.shift()
-  const reducerData = useReducer(createLog(reducer), ...copyParams)
+  const toogleSignLog = () => (logHasBeenCalled = !logHasBeenCalled)
+  const { reducerWithLog } = createLog({ reducer, logHasBeenCalled, toogleSignLog })
+  const [state, dispatch] = useReducer(reducerWithLog, ...copyParams)
 
-  return reducerData
+  function customDispatch(action) {
+    logHasBeenCalled = false
+    dispatch(action)
+  }
+
+  return [state, customDispatch]
 }
 
 export default useLogReducer
