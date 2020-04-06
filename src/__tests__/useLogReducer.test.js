@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect'
-import React, { useReducer } from 'react'
-import { cleanup, render, act } from '@testing-library/react'
+import React from 'react'
+import { cleanup, render, fireEvent } from '@testing-library/react'
 
 import useLogReducer from '..'
 
@@ -13,53 +13,50 @@ describe('useLogReducer', () => {
   const mockedConsole = (...output) => consoleOpt.push([...output])
   afterEach(() => (console.log = originalLog))
   beforeEach(() => {
-    console.group = mockedConsole
+    console.groupCollapsed = mockedConsole
     console.groupEnd = mockedConsole
     console.log = mockedConsole
   })
 
-  const initialVal = { count: 0 }
-  const App = ({ children, args }) => children(useLogReducer(...args))
-  function reducerFunc(state, action) {
+  const initialState = { count: 0 }
+  function reducer(state, action) {
     switch (action.type) {
       case 'increment':
         return { ...state, count: state.count + 1 }
       default:
-        return state
+        throw new Error('Unknown action type')
     }
   }
 
-  function setup(...args) {
-    let returnVal
+  function Example() {
+    const [state, dispatch] = useLogReducer(reducer, initialState)
 
-    render(
-      <App args={args}>
-        {val => {
-          returnVal = val
-          return null
-        }}
-      </App>
+    return (
+      <div>
+        <button onClick={() => dispatch({ type: 'decrement' })}>{'-'}</button>
+        <span>Num: {state.count}</span>
+        <button onClick={() => dispatch({ type: 'increment' })}>{'+'}</button>
+      </div>
     )
-
-    return returnVal
   }
 
   test('should return initial value and logger not trigger in first render', () => {
-    const [state] = setup(reducerFunc, initialVal)
-
+    render(<Example />)
     expect(consoleOpt).toEqual([])
   })
 
   test('print to browser log are, prev state, action and next state', () => {
-    const [state, dispatch] = setup(reducerFunc, initialVal)
-    act(() => dispatch({ type: 'increment' }))
+    const { getByText } = render(<Example />)
+    const incrementBtn = getByText('+')
+    const decrementBtn = getByText('-')
 
+    expect(getByText(/num: 0/i)).toBeInTheDocument()
+    expect(consoleOpt).toEqual([])
+
+    fireEvent.click(incrementBtn)
+
+    expect(getByText(/num: 1/i)).toBeInTheDocument()
     expect(consoleOpt).toEqual([
-      ['--- useReducer Logger ---'],
-      ['prev state', { count: 0 }],
-      ['action', { type: 'increment' }],
-      ['next state', { count: 1 }],
-      [],
       ['--- useReducer Logger ---'],
       ['prev state', { count: 0 }],
       ['action', { type: 'increment' }],

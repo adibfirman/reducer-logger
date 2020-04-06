@@ -1,7 +1,7 @@
 {
   "name": "reducer-logger",
   "version": "1.0.0",
-  "description": "Log for your useReducer",
+  "description": "Hooks for log your useReducer",
   "repository": "adibfirman/reducer-logger",
   "author": "adibfirman <dib.firman@gmail.com>",
   "license": "MIT",
@@ -10,6 +10,15 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "unpkg": "dist/index.umd.js",
+  "keywords": [
+    "react",
+    "reactjs",
+    "log",
+    "hooks"
+  ],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test:dev": "jest --watch",
     "test": "jest",
@@ -44,6 +53,7 @@
     "prettier": "^2.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
     "rollup": "^2.2.0"
   }
 }
