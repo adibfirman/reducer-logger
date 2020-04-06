@@ -1,6 +1,6 @@
 {
   "name": "reducer-logger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Hooks for debug your awesome useReducer React API",
   "repository": "adibfirman/reducer-logger",
   "author": "adibfirman <dib.firman@gmail.com>",
