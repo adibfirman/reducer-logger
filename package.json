@@ -55,6 +55,6 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-test-renderer": "16.13.1",
-    "rollup": "2.3.3"
+    "rollup": "2.26.5"
   }
 }
