@@ -1,4 +1,4 @@
-function createLog({ reducer, logHasBeenCalled, toogleSignLog }) {
+function createLog({ reducer, logHasBeenCalled, toggleSignLog }) {
   function reducerWithLog(state, action) {
     if (!logHasBeenCalled) {
       console.groupCollapsed('%c--- useReducer Logger ---', 'font-weight: bold;')
@@ -7,7 +7,7 @@ function createLog({ reducer, logHasBeenCalled, toogleSignLog }) {
       console.log('%cnext state', 'color: #4AB14D;', reducer(state, action))
       console.groupEnd()
 
-      toogleSignLog()
+      toggleSignLog()
     }
 
     return reducer(state, action)
